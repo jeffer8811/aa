@@ -1,0 +1,287 @@
+<!-- Define que el documento esta bajo el estandar de HTML 5 -->
+<!doctype html>
+
+<!-- Representa la raíz de un documento HTML o XHTML. Todos los demás elementos deben ser descendientes de este elemento. -->
+<html lang="es">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Formulario simple</title>
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+        <script src="./particles.min.js"></script>
+        <!-- Link hacia el archivo de estilos css -->
+        <link rel="icon" href="./images/logo.ico">
+        <link rel="stylesheet" href="css/login.css">
+        <div id="particles-js"></div>
+        <script src="./particles.min.js"></script>
+        <script>
+          particlesJS(
+            {
+  "particles": {
+    "number": {
+      "value": 71,
+      "density": {
+        "enable": true,
+        "value_area": 552.4033491425909
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      },
+      "polygon": {
+        "nb_sides": 5
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 0.5,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 40,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 6,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "repulse"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 400,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 400,
+        "size": 40,
+        "duration": 2,
+        "opacity": 8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": false
+}
+          )
+        </script>
+        <style type="text/css">
+            
+        </style>
+        
+        <script type="text/javascript">
+        </script>
+        
+    </head>
+    <div id="cabecera">
+
+    </div> 
+    <body>
+      
+      <div id="sesion"></div>
+        <div id="contenedor">
+            
+            <div id="contenedorcentrado">
+                <div id="login">
+                  
+                <form action="" id="form1">
+                  <center><h1>REGISTRATE</h1></center>                
+                <p>EMAIL</p>
+                <input type="email" name="" id="email"  placeholder="Aqui tu Email"> 
+                <P>CONTRASEÑA</P>
+                <input type="password" name="" id="pass" placeholder="Aqui tu Contraseña"> 
+                <button id="ingresar" > GUARDAR </button>
+                <button type="reset" id="limpiar" > LIMPIAR </button>
+                </form>
+
+                        <label for="usuario">USUARIO</label><br>
+                        <input type="email" name="" id="email1" placeholder="Aqui tu Correo"> 
+                        <label for="password">CONTRASEÑA</label><br>
+                        <input type="password" name="" id="pass1" placeholder="Aqui tu Contraseña"> 
+                        <button id="acceder"> INICIAR </button>
+                        <button id="google">INICIAR SESION CON GOOGLE</button>
+                        
+                        <script type="module">
+                          // Import the functions you need from the SDKs you need
+                          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+                          //Creamos una nueva cuenta
+                          import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+                          //import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+                  
+                          // TODO: Add SDKs for Firebase products that you want to use
+                          // https://firebase.google.com/docs/web/setup#available-libraries
+                        
+                          // Your web app's Firebase configuration
+                          const firebaseConfig = {
+                            apiKey: "AIzaSyD1fM_RCgKJoexILrUEN1PzmvXNOZzRidw",
+                            authDomain: "autenticacion-efe52.firebaseapp.com",
+                            projectId: "autenticacion-efe52",
+                            storageBucket: "autenticacion-efe52.appspot.com",
+                            messagingSenderId: "296857017678",
+                            appId: "1:296857017678:web:40f77890df0f3f59d3d21f"
+                          };
+                        
+                          // Initialize Firebase
+                          const app = initializeApp(firebaseConfig);
+                          const auth = getAuth(app);
+                          const provider = new GoogleAuthProvider(app);
+                  
+                          //conectamos con el ID y obtenoms los valores 
+                          document.getElementById("ingresar").addEventListener("click", function(){
+                            //obtener los valores 
+                            const email =document.getElementById("email").value;
+                            const password = document.getElementById("pass").value;
+                  
+                            //realizo la conexion de pagina web a firebase
+                            createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                      // Signed in 
+                      const user = userCredential.user;
+                      // ...
+                      alert("Tu cuenta esta creada en Firebase")
+                    })
+                    .catch((error) => {
+                      const errorCode = error.code;
+                      const errorMessage = error.message;
+                      alert("Tu cuenta no se creado por falta de datos o ya está registrado")
+                      // ..
+                    });
+                  })
+                  
+                        //conectamos con el ingreso de sesion
+                        document.getElementById("acceder").addEventListener("click", function(){
+                          const email1 = document.getElementById("email1").value;
+                          const pass1 = document.getElementById("pass1").value;
+                  
+                          signInWithEmailAndPassword(auth, email1, pass1)
+                    .then((userCredential) => {
+                      // Signed in 
+                      const user = userCredential.user;
+                      // ...
+                      alert("Tu cuenta esta activa")
+                      //Para que aparezca una pagina de internet
+                      //window.open("https://www.youtube.com/", "mi pagina favorita" , "width=300px, heigth=200px")
+                  
+                     //Aparezca una pagina propia 
+                    window.open("./inicio.html")
+                    })
+                    .catch((error) => {
+                      const errorCode = error.code;
+                      const errorMessage = error.message;
+                      alert("Esta cuenta no existe, debes registrarte primero")
+                    });
+                  
+                        })
+                  
+                        function limpiar(){
+                          document.getElementById("form1").reset();
+                        }
+                        
+                        document.getElementById("google").addEventListener("click", function () {
+                        signInWithRedirect(auth, provider);
+                        getRedirectResult(auth)
+                          .then((result) => {
+                            // This gives you a Google Access Token. You can use it to access Google APIs.
+                            const credential = GoogleAuthProvider.credentialFromResult(result);
+                            const token = credential.accessToken;
+                  
+                            // The signed-in user info.
+                            const user = result.user;
+                          }).catch((error) => {
+                            // Handle Errors here.
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            // The email of the user's account used.
+                            const email = error.customData.email;
+                            // The AuthCredential type that was used.
+                            const credential = GoogleAuthProvider.credentialFromError(error);
+                            // ...
+                          });
+                      })                  
+                        </script>
+                    </form>
+                    
+    
+                </div>
+                <div id="derecho">
+                    <div class="titulo">
+                        Bienvenido
+                    </div>
+                    <hr>
+                    <div class="pie-form">
+                      <a href="mailto:bravo25whisky@gmail.com">¿Perdiste tu contraseña?</a>
+                      <hr>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</body>
+</html>
